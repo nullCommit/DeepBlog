@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -26,9 +27,15 @@ interface HomeProps {
 
 export default function Home() {
   return (
-    <div>
-      <h1>teste</h1>
-    </div>
+    <>
+      <Head>
+        <title>Home | Space Traveling</title>
+      </Head>
+
+      <div>
+        <h1>teste</h1>
+      </div>
+    </>
   );
 }
 
