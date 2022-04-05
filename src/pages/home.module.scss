@@ -1,1 +1,63 @@
-// TODO
+.container {
+  max-width: 700px;
+  margin: 1.3rem auto;
+  padding: 0 4rem;
+  height: calc(100vh - 8rem);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-bottom: 3rem;
+
+  h1 {
+    font-weight: bold;
+    font-size: 1.75rem;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.3rem;
+  }
+}
+
+.aboutContainer {
+  display: flex;
+  height: 22px;
+}
+
+.dateContainer {
+  display: flex;
+  margin-right: 1.5rem;
+  align-items: center;
+
+  time {
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    color: var(--gray-300);
+  }
+}
+
+.authorContainer {
+  display: flex;
+  align-items: center;
+
+  span {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-left: 0.5rem;
+    color: var(--gray-300);
+  }
+}
+
+.button {
+  margin: 0.6rem 0;
+
+  a {
+    font-size: 1.125rem;
+    color: var(--pink-500);
+    font-weight: 600;
+  }
+}
