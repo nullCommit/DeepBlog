@@ -58,9 +58,11 @@ export default function Home({ postsPagination }: HomeProps) {
           </div>
         ))}
 
-        <div className={styles.button}>
-          <a href="#">Carregar mais posts</a>
-        </div>
+        {postsPagination.next_page && (
+          <div className={styles.button}>
+            <a href="#">Carregar mais posts</a>
+          </div>
+        )}
       </main>
     </>
   );
