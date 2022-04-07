@@ -5,7 +5,6 @@ import ptBR from 'date-fns/locale/pt-BR';
 import Link from 'next/link';
 
 import { FiCalendar, FiUser } from 'react-icons/fi';
-import { RichText } from 'prismic-dom';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -92,7 +91,7 @@ export default function Home({ postsPagination }: HomeProps) {
         {posts.map(post => (
           <Link key={post.uid} href={`/post/${post.uid}`}>
             <a className={styles.content}>
-              <h1>{post.data.title}</h1>
+              <strong>{post.data.title}</strong>
 
               <p>{post.data.subtitle}</p>
 
@@ -127,13 +126,7 @@ export const getStaticProps = async () => {
   const postsResponse = await prismic.query<any>(
     [Prismic.predicates.at('document.type', 'post')],
     {
-      fetch: [
-        'post.title',
-        'post.subtitle',
-        'post.author',
-        'post.banner',
-        'post.content',
-      ],
+      fetch: ['post.title', 'post.subtitle', 'post.author'],
       pageSize: 2,
     }
   );
