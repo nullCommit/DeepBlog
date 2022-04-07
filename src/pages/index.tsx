@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Prismic from '@prismicio/client';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import Link from 'next/link';
 
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import { RichText } from 'prismic-dom';
@@ -10,6 +11,7 @@ import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
+import { useState } from 'react';
 
 interface Post {
   uid?: string;
@@ -31,6 +33,21 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps) {
+  const formattedPosts = postsPagination.results.map(post => {
+    return {
+      ...post,
+      first_publication_date: format(
+        new Date(post.first_publication_date),
+        'dd MMM yyyy',
+        {
+          locale: ptBR,
+        }
+      ),
+    };
+  });
+
+  const [posts, setPosts] = useState<Post[]>(formattedPosts);
+
   return (
     <>
       <Head>
@@ -38,24 +55,26 @@ export default function Home({ postsPagination }: HomeProps) {
       </Head>
 
       <main className={styles.container}>
-        {postsPagination.results.map(post => (
-          <div className={styles.content}>
-            <h1>{post.data.title}</h1>
+        {posts.map(post => (
+          <Link href="">
+            <a className={styles.content}>
+              <h1>{post.data.title}</h1>
 
-            <p>{post.data.subtitle}</p>
+              <p>{post.data.subtitle}</p>
 
-            <div className={styles.aboutContainer}>
-              <div className={styles.dateContainer}>
-                <FiCalendar size="16px" color="#bbbbbb" />
-                <time>{post.first_publication_date}</time>
+              <div className={styles.aboutContainer}>
+                <div className={styles.dateContainer}>
+                  <FiCalendar size="16px" color="#bbbbbb" />
+                  <time>{post.first_publication_date}</time>
+                </div>
+
+                <div className={styles.authorContainer}>
+                  <FiUser size="16px" color="#bbbbbb" />
+                  <span>{post.data.author}</span>
+                </div>
               </div>
-
-              <div className={styles.authorContainer}>
-                <FiUser size="16px" color="#bbbbbb" />
-                <span>{post.data.author}</span>
-              </div>
-            </div>
-          </div>
+            </a>
+          </Link>
         ))}
 
         {postsPagination.next_page && (
@@ -90,13 +109,7 @@ export const getStaticProps = async () => {
   const results = postsResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        'dd MMM yyyy',
-        {
-          locale: ptBR,
-        }
-      ),
+      first_publication_date: post.first_publication_date,
       // first_publication_date: new Date(
       //   post.first_publication_date
       // ).toLocaleDateString('pt-BR', {
