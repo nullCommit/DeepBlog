@@ -157,7 +157,7 @@ export const getStaticProps = async () => {
     results,
   };
 
-  console.log(JSON.stringify(postsPagination, null, 2));
+  // console.log(JSON.stringify(postsPagination, null, 2));
 
   return {
     props: {
