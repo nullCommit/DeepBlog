@@ -91,21 +91,21 @@ export default function Home({ postsPagination }: HomeProps) {
         {posts.map(post => (
           <Link key={post.uid} href={`/post/${post.uid}`}>
             <a className={styles.content}>
-              <strong>{post.data.title}</strong>
+              <h1>{post.data.title}</h1>
 
               <p>{post.data.subtitle}</p>
 
-              <div className={styles.aboutContainer}>
-                <div className={styles.dateContainer}>
-                  <FiCalendar size="16px" color="#bbbbbb" />
-                  <time>{post.first_publication_date}</time>
-                </div>
+              <ul>
+                <li>
+                  <FiCalendar size="20px" color="#bbbbbb" />
+                  {post.first_publication_date}
+                </li>
 
-                <div className={styles.authorContainer}>
-                  <FiUser size="16px" color="#bbbbbb" />
-                  <span>{post.data.author}</span>
-                </div>
-              </div>
+                <li>
+                  <FiUser size="20px" color="#bbbbbb" />
+                  {post.data.author}
+                </li>
+              </ul>
             </a>
           </Link>
         ))}

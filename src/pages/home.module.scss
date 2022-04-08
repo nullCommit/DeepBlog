@@ -9,9 +9,27 @@
 }
 
 .content {
-  display: block;
+  ul {
+    list-style: none;
+    display: flex;
 
-  strong {
+    li {
+      display: flex;
+      font-size: 0.8rem;
+      align-items: center;
+      color: var(--gray-300);
+
+      svg {
+        margin-right: 0.5rem;
+      }
+
+      & + li {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+
+  h1 {
     color: var(--gray-100);
     font-weight: bold;
     font-size: 1.75rem;
@@ -31,35 +49,6 @@
 
   & + a {
     margin-top: 3rem;
-  }
-}
-
-.aboutContainer {
-  display: flex;
-  height: 22px;
-}
-
-.dateContainer {
-  display: flex;
-  margin-right: 1.5rem;
-  align-items: center;
-
-  time {
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-    color: var(--gray-300);
-  }
-}
-
-.authorContainer {
-  display: flex;
-  align-items: center;
-
-  span {
-    font-size: 0.8rem;
-    text-align: center;
-    margin-left: 0.5rem;
-    color: var(--gray-300);
   }
 }
 

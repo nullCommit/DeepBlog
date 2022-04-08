@@ -68,26 +68,24 @@ export default function Post({ post }: PostProps) {
       <img src={post.data.banner.url} alt="banner" className={styles.banner} />
 
       <div className={styles.container}>
-        <div className={styles.title}>
-          <h1>{post.data.title}</h1>
+        <h1>{post.data.title}</h1>
 
-          <div className={styles.infoContainer}>
-            <div className={styles.dateContainer}>
-              <FiCalendar size="16px" color="#bbbbbb" />
-              <time>{formattedDate}</time>
-            </div>
+        <ul>
+          <li>
+            <FiCalendar size="20px" color="#bbbbbb" />
+            {formattedDate}
+          </li>
 
-            <div className={styles.authorContainer}>
-              <FiUser size="16px" color="#bbbbbb" />
-              <span>{post.data.author}</span>
-            </div>
+          <li>
+            <FiUser size="20px" color="#bbbbbb" />
+            {post.data.author}
+          </li>
 
-            <div className={styles.timeContainer}>
-              <MdOutlineWatchLater size="16px" color="#bbbbbb" />
-              <span>{`${readingTime} min`}</span>
-            </div>
-          </div>
-        </div>
+          <li>
+            <MdOutlineWatchLater size="20px" color="#bbbbbb" />
+            {`${readingTime} min`}
+          </li>
+        </ul>
 
         <div className={styles.content}>
           {post.data.content.map(content => (
